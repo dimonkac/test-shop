@@ -7,6 +7,7 @@ import { Card } from "../../common/styled";
 
 export const Main = () => {
   const [count, setCount] = useState(1);
+  const [_sale, setSale] = useState(1);
   const basket = JSON.parse(localStorage.getItem("basket"));
   const onAddBasket = (name) => () => {
     if (basket.includes(name)) {
@@ -24,10 +25,16 @@ export const Main = () => {
     setCount(count + 1);
   };
 
-  // const Sale = () => {
-  //   let i = 0;
-
-  // }
+  const calc = (count, price) => {
+    for (let i = 1; i < count; i++) {
+      if (count % 3 === 0) {
+        calc = calc * (price / 2);
+      }
+      console.log(calc);
+    }
+    const _Sale = count * price;
+    // setSale(_Sale);
+  };
 
   const renderProduct = () => {
     return Products.getProduct.map(({ name, price, img_adres }) => (
@@ -41,9 +48,14 @@ export const Main = () => {
           <ButtonS onClick={onIncrementPlas}>+</ButtonS>
         </Container>
         <ButtonS onClick={onAddBasket(name)}>Basket</ButtonS>
+        <ButtonS onClick={calc()}>calc</ButtonS> <Count>{_sale}</Count>
       </Card>
     ));
   };
+
+  // useEffect(() => {
+  //   renderProduct();
+  // }, []);
 
   return (
     <Fragment>

@@ -9,10 +9,10 @@ export const Basket = () => {
     JSON.parse(localStorage.getItem("basket"))
   );
 
-  const getBasket = async () => {
-    const promises = await basket.map((name) => Products.getBasket(name));
-    Promise.all(promises).then((res) => setProducts(res));
-    console.log(products);
+  const getBasket = () => {
+    const arr = Products.getProduct.filter(({ name }) => basket.includes(name));
+    setProducts(arr);
+    console.log(arr);
   };
 
   useEffect(() => {
