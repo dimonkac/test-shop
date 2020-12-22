@@ -18,6 +18,7 @@ export const Main = () => {
     localStorage.setItem("basket", JSON.stringify(basket));
     console.log(localStorage);
   };
+
   const onIncrementMinus = () => {
     setCount(count - 1);
   };
@@ -25,16 +26,24 @@ export const Main = () => {
     setCount(count + 1);
   };
 
-  const calc = (count, price) => {
-    for (let i = 1; i < count; i++) {
+  let pricesale = 1;
+  let sum = 1;
+
+  const calc = (price, count) => () => {
+    for (let i = 1; i <= count; i++) {
       if (count % 3 === 0) {
-        calc = calc * (price / 2);
+        pricesale = price / 2;
+      } else {
+        sum = price;
       }
-      console.log(calc);
     }
-    const _Sale = count * price;
-    // setSale(_Sale);
+    setSale(sum + pricesale);
+    console.log(_sale);
   };
+
+  // useEffect(() => {
+  //   calc();
+  // }, []);
 
   const renderProduct = () => {
     return Products.getProduct.map(({ name, price, img_adres }) => (
@@ -48,14 +57,14 @@ export const Main = () => {
           <ButtonS onClick={onIncrementPlas}>+</ButtonS>
         </Container>
         <ButtonS onClick={onAddBasket(name)}>Basket</ButtonS>
-        <ButtonS onClick={calc()}>calc</ButtonS> <Count>{_sale}</Count>
+        <ButtonS onClick={calc(price)}>calc</ButtonS> <Count>{_sale}</Count>
       </Card>
     ));
   };
 
-  // useEffect(() => {
-  //   renderProduct();
-  // }, []);
+  useEffect(() => {
+    renderProduct();
+  }, []);
 
   return (
     <Fragment>
