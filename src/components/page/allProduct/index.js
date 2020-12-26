@@ -26,19 +26,25 @@ export const Main = () => {
     setCount(count + 1);
   };
 
-  let pricesale = 1;
-  let sum = 1;
+  let pricesale = 0;
+  let sum = 0;
+  let sale = 0;
 
   const calc = (price, count) => () => {
     for (let i = 1; i <= count; i++) {
       if (count % 3 === 0) {
-        pricesale = price / 2;
+        sale += price / 2;
       } else {
-        sum = price;
+        sum += price;
       }
+      pricesale = sum + sale;
     }
-    setSale(sum + pricesale);
-    console.log(_sale);
+    // sale = sum + pricesale;
+
+    console.log(sale);
+
+    console.log(pricesale);
+    setSale(pricesale);
   };
 
   // useEffect(() => {
@@ -57,7 +63,8 @@ export const Main = () => {
           <ButtonS onClick={onIncrementPlas}>+</ButtonS>
         </Container>
         <ButtonS onClick={onAddBasket(name)}>Basket</ButtonS>
-        <ButtonS onClick={calc(price)}>calc</ButtonS> <Count>{_sale}</Count>
+        <ButtonS onClick={calc(price, count)}>calc</ButtonS>
+        <Count>{_sale}</Count>
       </Card>
     ));
   };
