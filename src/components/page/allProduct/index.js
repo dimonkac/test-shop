@@ -26,7 +26,7 @@ export const Main = () => {
     setCount(count + 1);
   };
 
-  let pricesale = 0;
+  // const pricesale = 0;
   let sum = 0;
   let sale = 0;
 
@@ -37,19 +37,19 @@ export const Main = () => {
       } else {
         sum += price;
       }
-      pricesale = sum + sale;
     }
-    // sale = sum + pricesale;
+    let pricesale = sum + sale;
 
     console.log(sale);
 
     console.log(pricesale);
+
     setSale(pricesale);
   };
 
-  // useEffect(() => {
-  //   calc();
-  // }, []);
+  useEffect(() => {
+    calc();
+  }, []);
 
   const renderProduct = () => {
     return Products.getProduct.map(({ name, price, img_adres }) => (
