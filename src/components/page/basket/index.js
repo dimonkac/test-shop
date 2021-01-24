@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 
 import { Heding, Flex, Card } from "../../common/styled";
-import Products from "../../products/index";
+import { Products } from "../../products/index";
 
 export const Basket = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ export const Basket = () => {
   );
 
   const getBasket = () => {
-    const arr = Products.getProduct.filter(({ name }) => basket.includes(name));
+    const arr = Products.filter(({ name }) => basket.includes(name));
     setProducts(arr);
     console.log(arr);
   };

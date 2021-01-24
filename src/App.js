@@ -3,8 +3,10 @@ import { Switch, Route } from "react-router-dom";
 
 import { Wraper } from "./components/common/styled";
 import { Header } from "./components/header";
-import { Main } from "./components/page/allProduct";
+// import { Main } from "./components/page/allProduct";
 import { Basket } from "./components/page/basket";
+import { CardProduct } from "./components/page/allProduct/CardProduct";
+import { Products } from "./components/products";
 
 const App = () => {
   useEffect(() => {
@@ -17,7 +19,10 @@ const App = () => {
       <Header />
       <Wraper>
         <Switch>
-          <Route path="/list" component={Main} />
+          <Route
+            path="/list"
+            render={() => <CardProduct Products={Products} />}
+          />
           <Route path="/basket" component={Basket} />
         </Switch>
       </Wraper>
